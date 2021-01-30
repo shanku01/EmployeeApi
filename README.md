@@ -5,7 +5,7 @@ This is an API application. The app is providing API for CRUD tasks.
 
 Index.js is all about connecting with database and calling routes.
 
-//Dabase
+//Dabase ->
 mongoose.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -13,12 +13,12 @@ mongoose.connect(process.env.DB_CONNECTION, {
     useCreateIndex: true
 }, () => {});
 
-//Homepage for apies
+//Homepage for apies ->
 app.get('/', (req, res) => {
     res.send('Welcome to the Employees Api');
 });
 
-//Route
+//Route ->
 const employeeRoute = require("./routes/Employees")
 app.use('/employee', employeeRoute);
 
@@ -54,7 +54,7 @@ const EmployeeSchema = mongoose.Schema({
 
 Route is the route for Api so you perform CRUD.
 
-//Finding all Employee
+//Finding all Employee ->
 router.get('/', async(req, res) => {
     try {
         const employees = await Employee.find();
@@ -66,7 +66,7 @@ router.get('/', async(req, res) => {
     }
 });
 
-//Submitting Employee
+//Submitting Employee ->
 router.post('/', async(req, res) => {
     const employee = new Employee({
         name:req.body.name,
@@ -86,7 +86,7 @@ router.post('/', async(req, res) => {
     }
 });
 
-//Delete Employee
+//Delete Employee ->
 router.delete('/:EmployeeId', async(req, res) => {
     try {
         await Employee.deleteOne({ _id: req.params.EmployeeId });
@@ -98,7 +98,7 @@ router.delete('/:EmployeeId', async(req, res) => {
     }
 });
 
-//update a Employee
+//update a Employee ->
 router.patch('/:EmployeeId', async(req, res) => {
     try {
         await Employee.updateOne({ _id: req.params.EmployeeId }, { $set: { title: req.body.title } });
